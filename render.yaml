@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: resume-app
+    env: docker
+    dockerfilePath: ./Dockerfile.alternative
+    dockerContext: .
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 80
+    buildCommand: ""
+    startCommand: ""
+
