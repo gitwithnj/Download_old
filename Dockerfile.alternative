@@ -18,13 +18,14 @@ RUN rm -rf ./*
 # Copy resume HTML file
 COPY index.html resume.html
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/sites-available/default
+# Copy startup script
+COPY start-nginx.sh /usr/local/bin/start-nginx.sh
+RUN chmod +x /usr/local/bin/start-nginx.sh
 
-# Expose port 80
+# Expose port (will use PORT env var at runtime)
 EXPOSE 80
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start nginx using startup script (handles PORT env var)
+CMD ["/usr/local/bin/start-nginx.sh"]
 
 
