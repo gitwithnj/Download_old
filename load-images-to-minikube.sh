@@ -63,35 +63,32 @@ echo -e "${GREEN}✓ Podman is available and running${NC}"
 echo -e "${GREEN}✓ Minikube is available and running${NC}"
 echo ""
 
-# Get list of Podman images
+# Get list of Podman images (from inside the machine where images actually are)
 echo "Fetching Podman images..."
-IMAGES=$(podman images --format "{{.Repository}}:{{.Tag}}" | grep -v "^<none>" || true)
+IMAGES=$(podman machine ssh -- podman images --format "{{.Repository}}:{{.Tag}}" | grep -v "^<none>" | grep -v "^REPOSITORY" || true)
 
 if [ -z "$IMAGES" ]; then
     echo -e "${YELLOW}⚠ No Podman images found${NC}"
     echo ""
     echo "Available images will be listed below. If empty, you may need to build images first."
-    podman images
+    podman machine ssh -- podman images
     exit 0
 fi
 
 # Convert to array (zsh/bash compatible)
 IMAGE_ARRAY=()
-while IFS= read -r line; do
-    [ -n "$line" ] && IMAGE_ARRAY+=("$line")
-done <<< "$IMAGES"
-
-# Alternative zsh-compatible method if above doesn't work
-if [ ${#IMAGE_ARRAY[@]} -eq 0 ] && [ -n "$IMAGES" ]; then
-    # Try zsh parameter expansion method
-    if [ -n "$ZSH_VERSION" ]; then
-        IMAGE_ARRAY=(${(f)IMAGES})
+if [ -n "$ZSH_VERSION" ]; then
+    # Zsh: use parameter expansion to split on newlines
+    IMAGE_ARRAY=(${(f)IMAGES})
+else
+    # Bash: use here-string with readarray/mapfile or while loop
+    if command -v mapfile &> /dev/null; then
+        mapfile -t IMAGE_ARRAY <<< "$IMAGES"
     else
-        # Fallback: split by newline using IFS
-        OLD_IFS="$IFS"
-        IFS=$'\n'
-        IMAGE_ARRAY=($IMAGES)
-        IFS="$OLD_IFS"
+        # Fallback: use while loop
+        while IFS= read -r line; do
+            [ -n "$line" ] && IMAGE_ARRAY+=("$line")
+        done <<< "$IMAGES"
     fi
 fi
 
@@ -165,13 +162,15 @@ for image in "${SELECTED_IMAGES[@]}"; do
         echo -n "(trying alternative method...) "
         TEMP_TAR=$(mktemp /tmp/podman-image-XXXXXX.tar)
         
-        if podman save "$image" -o "$TEMP_TAR" 2>/dev/null && \
-           minikube image load "$TEMP_TAR" 2>/dev/null; then
+        if podman machine ssh -- podman save "$image" -o "$TEMP_TAR" 2>/dev/null && \
+           podman machine ssh -- cat "$TEMP_TAR" | minikube image load - 2>/dev/null; then
+            podman machine ssh -- rm -f "$TEMP_TAR" 2>/dev/null || true
             rm -f "$TEMP_TAR"
             echo -e "${GREEN}✓${NC}"
             ((SUCCESS_COUNT++))
         else
-            rm -f "$TEMP_TAR"
+            podman machine ssh -- rm -f "$TEMP_TAR" 2>/dev/null || true
+            rm -f "$TEMP_TAR" 2>/dev/null || true
             echo -e "${RED}✗${NC}"
             echo -e "  ${YELLOW}Note: Image might already be available in Minikube${NC}"
             ((FAIL_COUNT++))
