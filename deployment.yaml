@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: resume-app
-        image: YOUR_AWS_ACCOUNT.dkr.ecr.us-west-2.amazonaws.com/resume-app:latest
+        image: resume-app:ae80f0db52aa
         ports:
         - containerPort: 80
           name: http

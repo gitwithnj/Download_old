@@ -7,7 +7,7 @@
   "containerDefinitions": [
     {
       "name": "resume-app",
-      "image": "YOUR_AWS_ACCOUNT.dkr.ecr.us-west-2.amazonaws.com/resume-app:latest",
+      "image": "resume-app:ae80f0db52aa",
       "essential": true,
       "portMappings": [
         {
