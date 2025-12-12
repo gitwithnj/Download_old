@@ -75,8 +75,25 @@ if [ -z "$IMAGES" ]; then
     exit 0
 fi
 
-# Convert to array
-mapfile -t IMAGE_ARRAY <<< "$IMAGES"
+# Convert to array (zsh/bash compatible)
+IMAGE_ARRAY=()
+while IFS= read -r line; do
+    [ -n "$line" ] && IMAGE_ARRAY+=("$line")
+done <<< "$IMAGES"
+
+# Alternative zsh-compatible method if above doesn't work
+if [ ${#IMAGE_ARRAY[@]} -eq 0 ] && [ -n "$IMAGES" ]; then
+    # Try zsh parameter expansion method
+    if [ -n "$ZSH_VERSION" ]; then
+        IMAGE_ARRAY=(${(f)IMAGES})
+    else
+        # Fallback: split by newline using IFS
+        OLD_IFS="$IFS"
+        IFS=$'\n'
+        IMAGE_ARRAY=($IMAGES)
+        IFS="$OLD_IFS"
+    fi
+fi
 
 if [ ${#IMAGE_ARRAY[@]} -eq 0 ]; then
     echo -e "${YELLOW}⚠ No valid Podman images found${NC}"
