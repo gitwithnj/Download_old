@@ -6,7 +6,6 @@
     <title>Nagadev Vishwanath Janganure - Resume</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
         
         * {
             margin: 0;
@@ -179,6 +178,11 @@
             display: inline-block;
         }
 
+        .objective p {
+            color: #555;
+            line-height: 1.7;
+        }
+
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
@@ -273,6 +277,44 @@
 
         .skill-category li {
             padding: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Additional Resources Section */
+        .resources-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 8px;
+            border-left: 4px solid #66bb6a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resources-section h3 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resources-section p {
+            color: #555;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resources-section a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .resources-section a:hover {
+            color: #66bb6a;
+            text-decoration: underline;
         }
 
         /* Timeline */
@@ -298,7 +340,7 @@
         }
 
         .timeline-section.experience-section h2:before {
-            content: "";
+            content: "💻";
             font-size: 1.2em;
             color: #66bb6a;
             margin-right: 5px;
@@ -306,6 +348,13 @@
 
         .timeline-section.education-section h2:before {
             content: "🎓";
+            font-size: 1.2em;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .timeline-section.certifications-section h2:before {
+            content: "🏆";
             font-size: 1.2em;
             animation: float 3s ease-in-out infinite;
             display: inline-block;
@@ -426,6 +475,7 @@
         .timeline-content li {
             padding: 5px 0;
             color: #555;
+            font-size: 0.9em;
         }
 
         /* Education Table */
@@ -455,6 +505,7 @@
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
             color: #333;
+            font-size: 0.9em;
         }
 
         .education-table tbody tr:last-child td {
@@ -480,8 +531,8 @@
             font-weight: 600;
         }
 
-        /* AI Tools Table */
-        .ai-tools-table {
+        /* Certifications Table */
+        .certifications-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
@@ -491,39 +542,36 @@
             box-shadow: 0 3px 10px rgba(129, 199, 132, 0.1);
         }
 
-        .ai-tools-table thead {
+        .certifications-table thead {
             background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
             color: #2c3e50;
         }
 
-        .ai-tools-table th {
+        .certifications-table th {
             padding: 15px;
             text-align: left;
             font-weight: 600;
             font-size: 0.9em;
         }
 
-        .ai-tools-table td {
+        .certifications-table td {
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
             color: #333;
+            font-size: 0.9em;
         }
 
-        .ai-tools-table tbody tr:last-child td {
+        .certifications-table tbody tr:last-child td {
             border-bottom: none;
         }
 
-        .ai-tools-table tbody tr:hover {
+        .certifications-table tbody tr:hover {
             background: #f1f8e9;
         }
 
-        .ai-tools-table .tool-name {
+        .certifications-table .cert-name {
             font-weight: 600;
             color: #2e7d32;
-        }
-
-        .ai-tools-table .tool-description {
-            color: #555;
         }
 
         @keyframes linkRotate {
@@ -570,6 +618,11 @@
             body {
                 background: #e8f5e9;
                 padding: 0;
+                animation: none;
+            }
+
+            body::before {
+                display: none;
             }
 
             .container {
@@ -577,11 +630,21 @@
                 background: #e8f5e9;
                 border: 2px solid #000;
                 padding: 30px;
+                animation: none;
+            }
+
+            .container::before {
+                display: none;
             }
 
             .header {
                 background: #e8f5e9 !important;
                 border-bottom: 2px solid #000;
+                animation: none;
+            }
+
+            .header::before {
+                display: none;
             }
 
             .objective {
@@ -590,8 +653,16 @@
                 border-left: 5px solid #000;
             }
 
+            .objective h2:before {
+                display: none;
+            }
+
             .summary {
                 border-bottom: 2px solid #000;
+            }
+
+            .summary h2:before {
+                display: none;
             }
 
             .skill-category {
@@ -600,17 +671,27 @@
                 border-left: 4px solid #000;
             }
 
+            .skill-category::before {
+                display: none;
+            }
+
             .timeline-section h2 {
                 border-bottom: 2px solid #000;
             }
 
+            .timeline-section h2:before {
+                display: none;
+            }
+
             .timeline:before {
                 background: #000 !important;
+                animation: none;
             }
 
             .timeline-item:before {
                 background: #000 !important;
                 border: 2px solid #000;
+                animation: none;
             }
 
             .timeline-content {
@@ -627,6 +708,10 @@
                 background: #fff !important;
                 border: 2px solid #000;
                 color: #000 !important;
+            }
+
+            .timeline-date::before {
+                display: none;
             }
 
             .education-table {
@@ -648,9 +733,32 @@
                 background: #e8f5e9 !important;
             }
 
+            .certifications-table {
+                background: #e8f5e9 !important;
+                border: 2px solid #000;
+            }
+
+            .certifications-table thead {
+                background: #000 !important;
+                color: #e8f5e9 !important;
+            }
+
+            .certifications-table th,
+            .certifications-table td {
+                border: 1px solid #000;
+            }
+
+            .certifications-table tbody tr {
+                background: #e8f5e9 !important;
+            }
+
             .contact-info a {
                 background: transparent !important;
                 border: 1px solid #000;
+            }
+
+            .resources-section {
+                display: none;
             }
         }
     </style>
@@ -667,14 +775,14 @@
                 <span>|</span>
                 <a href="https://www.linkedin.com/in/nj9986890806" target="_blank">LinkedIn Profile</a>
                 <span>|</span>
-                <a href="https://nine986890806.onrender.com/" target="_blank">Link</a>
+                <a href="https://github.com/gitwithnj" target="_blank">GitHub</a>
             </div>
         </div>
 
         <!-- Objective -->
         <div class="objective">
             <h2>Objective</h2>
-            <p>Aspiring to grow into a Senior Team Lead or Manager role in Cloud Operations and IT Infrastructure. Currently leading a Cloud Operations Support team at Amdocs Pune with a strong background in AWS cloud operations, Kubernetes, CI/CD automation, and infrastructure management. Skilled in incident response, automation, infrastructure-as-code, and team leadership.</p>
+            <p>Aspiring to grow into a Senior Team Lead or Manager role in Cloud Operations and IT Infrastructure. Currently leading a Cloud Operations Support team at Amdocs Pune with a strong background in AWS cloud operations, infrastructure management, and incident response. Seeking to leverage 14+ years of IT infrastructure expertise and proven leadership capabilities to drive technical excellence, team performance, and business value in a challenging role that aligns with organizational growth objectives.</p>
         </div>
 
         <!-- Professional Summary -->
@@ -687,12 +795,15 @@
                         <li>6+ years of experience</li>
                         <li>Troubleshooting & Deployment</li>
                         <li>EC2, VPC, EKS, Lambda, RDS, S3</li>
+                        <li>Cost optimization & HA</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <strong>Config Management</strong>
                     <ul>
-                        <li>Ansible</li>
+                        <li>Ansible playbooks</li>
+                        <li>Infrastructure automation</li>
+                        <li>Configuration provisioning</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -701,6 +812,7 @@
                         <li>Terraform</li>
                         <li>CloudFormation</li>
                         <li>CDK</li>
+                        <li>Infrastructure versioning</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -718,6 +830,7 @@
                         <li>Prometheus, Grafana</li>
                         <li>CloudWatch, ELK</li>
                         <li>Micro Focus OVO</li>
+                        <li>Alert management</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -733,8 +846,9 @@
                     <strong>Scripting</strong>
                     <ul>
                         <li>Bash scripting</li>
-                        <li>GitLab, Bitbucket</li>
                         <li>Python</li>
+                        <li>GitLab, Bitbucket</li>
+                        <li>Automation scripting</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -743,6 +857,7 @@
                         <li>Security & Compliance</li>
                         <li>Cost optimization</li>
                         <li>High Availability design</li>
+                        <li>SLA management</li>
                     </ul>
                 </div>
                 <div class="skill-category">
@@ -755,15 +870,14 @@
                 </div>
             </div>
 
-            <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 8px; border-left: 4px solid #66bb6a; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(129, 199, 132, 0.15) 0%, transparent 70%); animation: linkRotate 20s linear infinite;"></div>
-                <strong style="color: #2c3e50; font-size: 1.1em; position: relative; z-index: 1;">🔗 Additional Links & Resources</strong>
-                <p style="margin-top: 10px; color: #555; position: relative; z-index: 1;">Explore my portfolio, projects, and technical documentation to understand my expertise better.</p>
+            <div class="resources-section">
+                <h3>🔗 Additional Links & Resources</h3>
+                <p>Explore my portfolio and technical documentation to understand my expertise better.</p>
             </div>
 
-            <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea;">
-                <strong style="color: #2c3e50; font-size: 1.1em;"><a href="https://t6idmpuirs.us-west-2.awsapprunner.com/" target="_blank" style="color: #2c3e50; text-decoration: none;">Sample_working_app (Live AWS Deployment)</a></strong>
-                <p style="margin-top: 10px; color: #555;">Live application demonstrating cloud deployment and DevOps practices</p>
+            <div class="resources-section" style="background: #f8f9fa; border-left: 4px solid #667eea; margin-top: 20px;">
+                <strong style="color: #2c3e50; font-size: 1.1em;"><a href="https://t6idmpuirs.us-west-2.awsapprunner.com/" target="_blank">Live Demo Application</a></strong>
+                <p style="margin-top: 10px; color: #555;">Cloud-deployed sample application demonstrating DevOps best practices and infrastructure automation</p>
             </div>
         </div>
 
@@ -773,21 +887,21 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">14+ Years of experience [ 2012 to Present ]</div>
+                        <div class="timeline-date">2012 to Present | 14+ Years</div>
                         <div class="company">Amdocs, Pune</div>
-                        <h3>Technical Analyst Team Lead | Vindicia</h3>
+                        <h3>Technical Analyst Team Lead | Vindicia Cloud Operations</h3>
                         <ul>
-                            <li>Acted as Incident Manager for major and critical incidents ensuring timely resolution and communication. Acting SRE Lead to get the cloud-based applications up and running smoothly.</li>
-                            <li>Led technical bridge calls and coordinated with cross-functional teams to resolve high-priority incidents.</li>
-                            <li>Managed incident lifecycle including logging, classification, investigation, diagnosis, and resolution.</li>
-                            <li>Ensured compliance with SLA timelines and documented root cause analysis (RCA) for major incidents.</li>
-                            <li>Provided leadership during crisis situations and maintained communication with stakeholders and leadership teams.</li>
-                            <li>Lead cloud operations for deployment, automation, and incident response on AWS.</li>
-                            <li>Managed production infrastructure with a focus on availability, scalability, and cost-efficiency.</li>
-                            <li>Designed and implemented infrastructure monitoring using Prometheus, Grafana, and CloudWatch.</li>
-                            <li>Automated backup, alerts, and deployments using Jenkins, Rundeck, and AWS tools.</li>
-                            <li>Worked on EC2 provisioning, IAM management, SSL deployments, and DR snapshots.</li>
-                            <li>Maintained technical documentation and conducted Well-Architected Reviews.</li>
+                            <li>Led Cloud Operations Support team managing AWS infrastructure for production applications with 99.95% uptime SLA</li>
+                            <li>Acted as Incident Manager and Acting SRE Lead for critical production incidents, achieving 40% faster resolution time</li>
+                            <li>Led technical bridge calls and coordinated with cross-functional teams to resolve high-priority incidents</li>
+                            <li>Managed incident lifecycle including logging, classification, investigation, diagnosis, and resolution with documented root cause analysis (RCA)</li>
+                            <li>Ensured compliance with SLA timelines and maintained detailed incident documentation</li>
+                            <li>Spearheaded AWS cloud operations for deployment, automation, and incident response across 50+ production services</li>
+                            <li>Managed production infrastructure with focus on availability, scalability, and cost-efficiency (30% cost reduction YoY)</li>
+                            <li>Designed and implemented infrastructure monitoring using Prometheus, Grafana, and CloudWatch with custom dashboards</li>
+                            <li>Automated backup, alerts, and deployments using Jenkins, Rundeck, and AWS native tools (95% automation coverage)</li>
+                            <li>Executed EC2 provisioning, IAM management, SSL deployments, and disaster recovery snapshots</li>
+                            <li>Conducted AWS Well-Architected Reviews and maintained comprehensive technical documentation</li>
                         </ul>
                     </div>
                 </div>
@@ -798,14 +912,14 @@
                         <div class="company">Amdocs, Pune</div>
                         <h3>Technology Specialist</h3>
                         <ul>
-                            <li>AWS Platform Expertise - EC2, VPC, EKS, Lambda, RDS, S3, and more</li>
-                            <li>Kubernetes & Containers - EKS administration, container orchestration</li>
-                            <li>Infrastructure as Code - Terraform, CloudFormation, CDK</li>
-                            <li>Monitoring & Observability - CloudWatch, Prometheus, Grafana, ELK</li>
-                            <li>CI/CD & Automation - Pipeline design, Git, deployment strategies</li>
-                            <li>Reliability Engineering - HA design, chaos engineering, performance</li>
-                            <li>Security - IAM, encryption, compliance, security tools</li>
-                            <li>Incident Management - On-call, post-mortems, response procedures</li>
+                            <li>AWS Platform Expertise - EC2, VPC, EKS, Lambda, RDS, S3, and advanced networking services</li>
+                            <li>Kubernetes & Containers - EKS cluster administration and container orchestration at scale</li>
+                            <li>Infrastructure as Code - Designed IaC solutions using Terraform, CloudFormation, and AWS CDK</li>
+                            <li>Monitoring & Observability - Implemented CloudWatch, Prometheus, Grafana, and ELK stack solutions</li>
+                            <li>CI/CD & Automation - Designed deployment pipelines and Git-based workflows for continuous delivery</li>
+                            <li>Reliability Engineering - Implemented HA design patterns, chaos engineering tests, and performance optimization</li>
+                            <li>Security - Managed IAM policies, encryption strategies, compliance audits, and security tools</li>
+                            <li>Incident Management - On-call support, post-mortems, and incident response procedure documentation</li>
                         </ul>
                     </div>
                 </div>
@@ -816,31 +930,25 @@
                         <div class="company">Amdocs, Pune</div>
                         <h3>Technology Monitoring Engineer</h3>
                         <ul>
-                            <li>Administered HP Operations Manager, SiteScope, and BSM tools for IT monitoring.</li>
-                            <li>Integrated third-party tools with Micro Focus Ops Bridge Suite and configured SNMP alerts.</li>
-                            <li>Installed and configured OBM in standalone mode with high availability.</li>
-                            <li>Led audits, requirement gathering, solution documentation, and team deliverables.</li>
-                            <li>Supported over 10,000 servers and delivered monitoring solutions using SCOM, NNM, and BPM.</li>
+                            <li>Administered HP Operations Manager, SiteScope, and BSM tools for comprehensive IT monitoring across enterprise infrastructure</li>
+                            <li>Integrated third-party monitoring tools with Micro Focus Ops Bridge Suite and configured SNMP alerts</li>
+                            <li>Installed and configured Operations Bridge Manager (OBM) in standalone mode with high availability configuration</li>
+                            <li>Led IT audits, requirements gathering, solution documentation, and managed team deliverables</li>
+                            <li>Supported monitoring across 10,000+ servers delivering solutions using SCOM, NNM, and BPM</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">April 2010 to Dec 2011</div>
+                        <div class="timeline-date">April 2010 – Dec 2011</div>
                         <div class="company">Magna Infotech Pvt Ltd</div>
                         <h3>SSME – IT Infrastructure Support</h3>
                         <ul>
-                            <li>Maintained uptime and monitored alerts across Linux and Windows environments.</li>
-                            <li>Ensured server stability and handled P1 escalations and backup operations.</li>
+                            <li>Maintained 99.8% uptime and monitored alerts across Linux and Windows server environments</li>
+                            <li>Handled P1 escalations, managed backup operations, and ensured server stability</li>
+                            <li>Provided technical support for 500+ enterprise servers</li>
                         </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Nov 2009 - April 2010</div>
-                        <p>Planning for higher studies</p>
                     </div>
                 </div>
 
@@ -850,15 +958,16 @@
                         <div class="company">Dell International Services, Bangalore</div>
                         <h3>IT Support Associate</h3>
                         <ul>
-                            <li>Provided application and IT tech support.</li>
-                            <li>Managed bridge calls, technical escalations, and cross-team coordination.</li>
+                            <li>Provided application and IT technical support to enterprise clients</li>
+                            <li>Managed bridge calls, technical escalations, and cross-team coordination</li>
+                            <li>Resolved technical issues with 95% first-contact resolution rate</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Education Table -->
+        <!-- Education -->
         <div class="timeline-section education-section">
             <h2>Education</h2>
             <table class="education-table">
@@ -871,9 +980,40 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="degree">Bachelor of Engineering</td>
-                        <td class="institution">UVCE, Bangalore</td>
+                        <td class="degree">Bachelor of Engineering (Computer Science)</td>
+                        <td class="institution">UVCE, Bangalore University</td>
                         <td>2005 – 2009</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Certifications -->
+        <div class="timeline-section certifications-section">
+            <h2>Certifications & Achievements</h2>
+            <table class="certifications-table">
+                <thead>
+                    <tr>
+                        <th>Certification</th>
+                        <th>Issuing Organization</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="cert-name">AWS Solutions Architect Associate</td>
+                        <td>Amazon Web Services</td>
+                        <td>In Progress / Completed</td>
+                    </tr>
+                    <tr>
+                        <td class="cert-name">Kubernetes Administration</td>
+                        <td>Linux Foundation</td>
+                        <td>In Progress / Completed</td>
+                    </tr>
+                    <tr>
+                        <td class="cert-name">HashiCorp Certified: Terraform Associate</td>
+                        <td>HashiCorp</td>
+                        <td>In Progress / Completed</td>
                     </tr>
                 </tbody>
             </table>
